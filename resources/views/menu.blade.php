@@ -12,8 +12,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('catalogos')}}">Contactanos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Ayuda</a>
+          <li>
+            <a href="{{ route("register") }}" class="nav-link">Registrate</a>
           </li>
           @guest
           <li class="nav-item" role="presentation">
