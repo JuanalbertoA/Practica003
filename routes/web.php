@@ -6,7 +6,9 @@ use App\Http\Controllers\PlazaController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReticulaController;
 
 Route::get('/', function () {
     return view('inicio');
@@ -63,6 +65,24 @@ Route::get('/alumnos.show/{alumno}', [AlumnoController::class, 'show'])->name('a
 Route::delete('/alumnos.destroy/{alumno}', [AlumnoController::class, 'destroy'])->name('alumnos.destroy');
 Route::post('/alumnos.update/{alumno}', [AlumnoController::class, 'update'])->name('alumnos.update');
 Route::post('/alumnos.store', [AlumnoController::class, 'store'])->name('alumnos.store');
+
+Route::get('/reticulas.index', [ReticulaController::class, 'index'])->name('reticulas.index');
+Route::get('/reticulas.create', [ReticulaController::class, 'create'])->name('reticulas.create');
+Route::get('/reticulas.edit/{reticula}', [ReticulaController::class, 'edit'])->name('reticulas.edit');
+Route::get('/reticulas.show/{reticula}', [ReticulaController::class, 'show'])->name('reticulas.show');
+Route::delete('/reticulas.destroy/{reticula}', [ReticulaController::class, 'destroy'])->name('reticulas.destroy');
+Route::post('/reticulas.update/{reticula}', [ReticulaController::class, 'update'])->name('reticulas.update');
+Route::post('/reticulas.store', [ReticulaController::class, 'store'])->name('reticulas.store');
+
+Route::get('/materias.index', [MateriaController::class, 'index'])->name('materias.index');
+Route::get('/materias.create', [MateriaController::class, 'create'])->name('materias.create');
+Route::get('/materias.edit/{materia}', [MateriaController::class, 'edit'])->name('materias.edit');
+Route::get('/materias.show/{materia}', [MateriaController::class, 'show'])->name('materias.show');
+Route::delete('/materias.destroy/{materia}', [MateriaController::class, 'destroy'])->name('materias.destroy');
+Route::post('/materias.update/{materia}', [MateriaController::class, 'update'])->name('materias.update');
+Route::post('/materias.store', [MateriaController::class, 'store'])->name('materias.store');
+
+
 
 
 Route::middleware('auth')->group(function () {
