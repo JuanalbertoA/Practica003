@@ -7,6 +7,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReticulaController;
 
@@ -82,8 +83,13 @@ Route::delete('/materias.destroy/{materia}', [MateriaController::class, 'destroy
 Route::post('/materias.update/{materia}', [MateriaController::class, 'update'])->name('materias.update');
 Route::post('/materias.store', [MateriaController::class, 'store'])->name('materias.store');
 
-
-
+Route::get('/periodos', [PeriodoController::class, 'index'])->name('periodos.index');
+Route::get('/periodos/create', [PeriodoController::class, 'create'])->name('periodos.create');
+Route::get('/periodos/edit/{periodo}', [PeriodoController::class, 'edit'])->name('periodos.edit');
+Route::get('/periodos/show/{periodo}', [PeriodoController::class, 'show'])->name('periodos.show');
+Route::delete('/periodos/destroy/{periodo}', [PeriodoController::class, 'destroy'])->name('periodos.destroy');
+Route::post('/periodos/update/{periodo}', [PeriodoController::class, 'update'])->name('periodos.update');
+Route::post('/periodos/store', [PeriodoController::class, 'store'])->name('periodos.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

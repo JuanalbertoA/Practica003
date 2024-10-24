@@ -13,7 +13,7 @@
                         Catálogos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="catalogosDropdown">
-                        <li><a class="dropdown-item" href="#">Periodos</a></li>
+                        <li><a class="dropdown-item" href="{{route('periodos.index')}}">Periodos</a></li>
                         <li><a class="dropdown-item" href="{{route('plazas.index')}}">Plazas</a></li>
                         <li><a class="dropdown-item" href="{{route('puestos.index')}}">Puestos</a></li>
                         <li><a class="dropdown-item" href="#">Personal</a></li>
