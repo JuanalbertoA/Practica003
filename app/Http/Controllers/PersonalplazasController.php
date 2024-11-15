@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PersonalPlaza;
 use App\Models\Plaza;
 use App\Models\Personal;
-use App\Models\PersonalPlazas;
+use App\Models\personalplazas;
 use Illuminate\Http\Request;
 
 class PersonalplazasController extends Controller
