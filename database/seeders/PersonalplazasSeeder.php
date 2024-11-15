@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\PersonalPlaza;
-use App\Models\PersonalPlazas;
+use App\Models\Personalplazas;
 
 class PersonalplazasSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class PersonalplazasSeeder extends Seeder
     public function run()
     {
         // Crear 50 registros de personalplazas
-        PersonalPlazas::factory()->count(5)->create();
+        Personalplazas::factory()->count(5)->create();
     }
 }
 
