@@ -15,4 +15,8 @@ class Depto extends Model
     public function carreras(): HasMany{
         return $this->hasMany(Carrera::class);
     }
+
+    public function personal(): HasMany{
+        return $this->hasMany(Personal::class);
+    }
 }
