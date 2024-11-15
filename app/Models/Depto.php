@@ -12,7 +12,7 @@ class Depto extends Model
 
     protected $fillable =['iddepto','nombredepto','nombremediano','nombrecorto'];
 
-    public function carreras(): HasMany{
+    public function carrera(): HasMany{
         return $this->hasMany(Carrera::class);
     }
 
