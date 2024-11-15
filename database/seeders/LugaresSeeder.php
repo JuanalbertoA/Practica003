@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Plaza;
+use App\Models\Lugares;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PlazaSeeder extends Seeder
+class LugaresSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        \App\Models\Plaza::factory()->count(5)->create();
+        Lugares::factory(10)->create();
     }
 }

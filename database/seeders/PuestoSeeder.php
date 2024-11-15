@@ -13,6 +13,13 @@ class PuestoSeeder extends Seeder
      */
     public function run(): void
     {
-        Puesto::factory(10)->create();
+        $tipos = ['Docentes', 'Dirección', 'No Docente', 'Auxiliar', 'Administrativo'];
+
+        foreach ($tipos as $tipo) {
+            // Crea 3 puestos para cada tipo
+            Puesto::factory()->count(3)->create([
+                'tipo' => $tipo,
+            ]);
+        }
     }
 }

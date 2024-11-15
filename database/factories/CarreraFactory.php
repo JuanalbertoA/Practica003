@@ -2,12 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Depto;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Depto;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Carrera>
- */
 class CarreraFactory extends Factory
 {
     /**
@@ -17,13 +14,28 @@ class CarreraFactory extends Factory
      */
     public function definition(): array
     {
-        $titulo=fake()->unique()->jobTitle();
+
+        static $carreras = [
+            ["Ingeniería en Sistemas Computacionales", "Ing. Sistemas", "ISC"],
+            ["Ingeniería Industrial", "Ing. Industrial", "II"],
+            ["Ingeniería Electrónica", "Ing. Electrónica", "IE"],
+            ["Ingeniería Mecánica", "Ing. Mecánica", "IM"],
+            ["Ingeniería Mecatrónica", "Ing. Mecatrónica", "IME"],
+            ["Contaduría Pública", "Cont. Pública", "CP"],
+            ["Ingeniería en Gestión Empresarial", "Ing. Gestión", "IGE"]
+        ];
+
+        // Índice cíclico para evitar duplicación de datos en la lista
+        static $indice = 0;
+        $carrera = $carreras[$indice % count($carreras)];
+        $indice++;
+
         return [
-            'idcarrera'=> fake()-> unique()->bothify("????####"),
-            'nombrecarrera' =>$titulo,
-            "nombremediano" => fake()->lexify(str_repeat("?",15)),
-            "nombrecorto" => substr($titulo,0,5),
-            'depto_id' => Depto::factory(),
+            'idcarrera' => fake()->unique()->bothify("????####"),  // ID único para cada carrera
+            'nombrecarrera' => $carrera[0],                        // Nombre completo de la carrera
+            'nombremediano' => $carrera[1],                        // Nombre mediano coherente
+            'nombrecorto' => $carrera[2],                          // Abreviatura de la carrera
+            'depto_id' => Depto::factory(),                        // Relación con un departamento existente o nuevo
         ];
     }
 }

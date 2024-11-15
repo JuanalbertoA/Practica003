@@ -16,21 +16,11 @@ class PuestoFactory extends Factory
      */
     public function definition(): array
     {
-        $tipos = ['Administrativo', 
-        'Operativo', 
-        'Ejecutivo', 
-        'Técnico', 
-        'Gerencial', 
-        'Asistente', 
-        'Supervisor', 
-        'Coordinador', 
-        'Director',
-        'Analista'];
         
         return [
-        'idpuesto' => $this->faker->bothify('???###'),
-        'nombre' => $this->faker->jobTitle(),
-        'tipo' => $this->faker->unique()->randomElement($tipos),
+            'idpuesto' => $this->faker->bothify('???###'),
+            'nombre' => $this->faker->jobTitle(),
+            'tipo' => 'General', // Valor predeterminado, se cambiará en el seeder
         ];
     }
 }

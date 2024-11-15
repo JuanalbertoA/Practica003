@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('materia_abiertas', function (Blueprint $table) {
             $table->id();
-            $table->string('idcarrera',15)->unique();
-            $table->string('nombrecarrera',200);
-            $table->string('nombremediano',50);
-            $table->string('nombrecorto',5);
-            $table->foreignId("depto_id")->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('materia_abiertas');
     }
 };

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('edificios', function (Blueprint $table) {
             $table->id();
-            $table->string('idcarrera',15)->unique();
-            $table->string('nombrecarrera',200);
-            $table->string('nombremediano',50);
-            $table->string('nombrecorto',5);
-            $table->foreignId("depto_id")->constrained();
+            $table->string('nombreedificio', 30); // Campo nombreedificio con longitud máxima de 30 caracteres
+            $table->string('nombrecorto', 5); // Campo nombrecorto con longitud máxima de 5 caracteres
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('edificios');
     }
 };

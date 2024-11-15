@@ -18,13 +18,14 @@ class AlumnoFactory extends Factory
     public function definition(): array
     {
         return [
-            'noctrl' => fake()->unique()->bothify("########"),
-            'nombre' => fake()->name(),      
-            'apellidop' => fake()->lastName(),
-            'apellidom' => fake()->lastName(),
-            'sexo' => fake()->randomElement(['M','F']),
-            'email' => fake()->email(),
-            'carrera_id' => Carrera::factory()
+            'noctrl' => $this->faker->unique()->bothify("########"),
+            'nombre' => $this->faker->name(),
+            'apellidop' => $this->faker->lastName(),
+            'apellidom' => $this->faker->lastName(),
+            'sexo' => $this->faker->randomElement(['M','F']),
+            'email' => $this->faker->email(),
+            // Asigna un carrera_id aleatorio de las carreras existentes
+            'carrera_id' => Carrera::inRandomOrder()->first()->id,
         ];
     }
 }

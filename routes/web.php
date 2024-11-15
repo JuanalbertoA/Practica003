@@ -6,8 +6,14 @@ use App\Http\Controllers\PlazaController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\EdificiosController;
+use App\Http\Controllers\LugaresController;
+use App\Http\Controllers\HorasController;
+use App\Http\Controllers\MateriaAbiertaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PeriodoController;
+use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\PersonalplazasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReticulaController;
 
@@ -83,13 +89,56 @@ Route::delete('/materias.destroy/{materia}', [MateriaController::class, 'destroy
 Route::post('/materias.update/{materia}', [MateriaController::class, 'update'])->name('materias.update');
 Route::post('/materias.store', [MateriaController::class, 'store'])->name('materias.store');
 
-Route::get('/periodos', [PeriodoController::class, 'index'])->name('periodos.index');
+Route::get('/periodos.index', [PeriodoController::class, 'index'])->name('periodos.index');
 Route::get('/periodos/create', [PeriodoController::class, 'create'])->name('periodos.create');
 Route::get('/periodos/edit/{periodo}', [PeriodoController::class, 'edit'])->name('periodos.edit');
 Route::get('/periodos/show/{periodo}', [PeriodoController::class, 'show'])->name('periodos.show');
 Route::delete('/periodos/destroy/{periodo}', [PeriodoController::class, 'destroy'])->name('periodos.destroy');
 Route::post('/periodos/update/{periodo}', [PeriodoController::class, 'update'])->name('periodos.update');
 Route::post('/periodos/store', [PeriodoController::class, 'store'])->name('periodos.store');
+
+Route::get('/materiasa.index', [MateriaAbiertaController::class, 'index'])->name('materiasa.index');
+
+Route::get('/edificios', [EdificiosController::class, 'index'])->name('edificios.index');
+Route::get('/edificios/create', [EdificiosController::class, 'create'])->name('edificios.create');
+Route::get('/edificios/edit/{edificio}', [EdificiosController::class, 'edit'])->name('edificios.edit');
+Route::get('/edificios/show/{edificio}', [EdificiosController::class, 'show'])->name('edificios.show');
+Route::delete('/edificios/destroy/{edificio}', [EdificiosController::class, 'destroy'])->name('edificios.destroy');
+Route::post('/edificios/update/{edificio}', [EdificiosController::class, 'update'])->name('edificios.update');
+Route::post('/edificios/store', [EdificiosController::class, 'store'])->name('edificios.store');
+
+Route::get('/horas', [HorasController::class, 'index'])->name('horas.index');
+Route::get('/horas/create', [HorasController::class, 'create'])->name('horas.create');
+Route::get('/horas/edit/{hora}', [HorasController::class, 'edit'])->name('horas.edit');
+Route::get('/horas/show/{hora}', [HorasController::class, 'show'])->name('horas.show');
+Route::delete('/horas/destroy/{hora}', [HorasController::class, 'destroy'])->name('horas.destroy');
+Route::post('/horas/update/{hora}', [HorasController::class, 'update'])->name('horas.update');
+Route::post('/horas/store', [HorasController::class, 'store'])->name('horas.store');
+
+Route::get('/lugares', [LugaresController::class, 'index'])->name('lugares.index');
+Route::get('/lugares/create', [LugaresController::class, 'create'])->name('lugares.create');
+Route::get('/lugares/edit/{lugar}', [LugaresController::class, 'edit'])->name('lugares.edit');
+Route::get('/lugares/show/{lugar}', [LugaresController::class, 'show'])->name('lugares.show');
+Route::delete('/lugares/destroy/{lugar}', [LugaresController::class, 'destroy'])->name('lugares.destroy');
+Route::post('/lugares/update/{lugar}', [LugaresController::class, 'update'])->name('lugares.update');
+Route::post('/lugares/store', [LugaresController::class, 'store'])->name('lugares.store');
+
+Route::get('/personals', [PersonalController::class, 'index'])->name('personals.index');
+Route::get('/personals/create', [PersonalController::class, 'create'])->name('personals.create');
+Route::get('/personals/edit/{personal}', [PersonalController::class, 'edit'])->name('personals.edit');
+Route::get('/personals/show/{personal}', [PersonalController::class, 'show'])->name('personals.show');
+Route::delete('/personals/destroy/{personal}', [PersonalController::class, 'destroy'])->name('personals.destroy');
+Route::post('/personals/update/{personal}', [PersonalController::class, 'update'])->name('personals.update');
+Route::post('/personals/store', [PersonalController::class, 'store'])->name('personals.store');
+
+Route::get('/personalplazas', [PersonalplazasController::class, 'index'])->name('personalplazas.index');
+Route::get('/personalplazas/create', [PersonalplazasController::class, 'create'])->name('personalplazas.create');
+Route::get('/personalplazas/edit/{id}', [PersonalplazasController::class, 'edit'])->name('personalplazas.edit');
+Route::get('personalplazas/show/{personalplaza}', [PersonalPlazasController::class, 'show'])->name('personalplazas.show');
+Route::delete('/personalplazas/destroy/{id}', [PersonalplazasController::class, 'destroy'])->name('personalplazas.destroy');
+Route::put('/personalplazas/update/{id}', [PersonalplazasController::class, 'update'])->name('personalplazas.update');
+Route::post('/personalplazas/store', [PersonalplazasController::class, 'store'])->name('personalplazas.store');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

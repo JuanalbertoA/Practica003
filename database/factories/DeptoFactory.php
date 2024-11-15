@@ -4,9 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Depto>
- */
 class DeptoFactory extends Factory
 {
     /**
@@ -16,12 +13,30 @@ class DeptoFactory extends Factory
      */
     public function definition(): array
     {
-        $titulo=fake()->unique()->jobTitle();
+        // Lista de nombres completos, nombres medianos y abreviaturas
+        $departamentos = [
+            ["Ingeniería en Sistemas Computacionales", "Ing.Sistemas", "ISC"],
+            ["Ingeniería Electrónica", "Ing.Electrónica", "IE"],
+            ["Ingeniería Mecánica", "Ing.Mecánica", "IM"],
+            ["Ingeniería Mecatrónica", "Ing.Mecatrónica", "IME"],
+            ["Contaduría Pública", "Cont.Pública", "CP"],
+            ["Ingeniería en Gestión Empresarial", "Ing. Gestión", "IGE"],
+            ["Ingeniería Industrial", "Ing.Industrial", "II"],
+            ["Ciencias Básicas", "CienciasB", "CB"],
+            ["Dirección", "Direc", "DIR"],
+            ["Subdirección", "Subdirec", "SUB"]
+        ];
+
+        // Selecciona un departamento y asegura el incremento de índice sin duplicar valores
+        static $indice = 0;
+        $departamento = $departamentos[$indice % count($departamentos)];
+        $indice++;
+
         return [
-            "iddepto"=>fake()->bothify("?#"),
-            "nombredepto"=>$titulo,
-            "nombremediano"=>fake()->lexify(str_repeat("?",15)),
-            "nombrecorto"=>substr($titulo,0,5),
+            'iddepto' => fake()->unique()->bothify("?#"),   // Genera un ID único
+            'nombredepto' => $departamento[0],               // Nombre completo del departamento
+            'nombremediano' => $departamento[1],             // Nombre mediano
+            'nombrecorto' => $departamento[2],               // Abreviatura
         ];
     }
 }
