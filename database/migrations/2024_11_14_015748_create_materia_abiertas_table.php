@@ -11,23 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('materia_abiertas', function (Blueprint $table) {
             $table->id(); // ID autoincremental BIGINT
-            $table->string('grupo', 5); // Grupo VARCHAR(5)
-            $table->string('descripcion', 200)->nullable(); // Descripción VARCHAR(200)
-            $table->integer('max_alumnos'); // Máximo de alumnos INT
-            $table->foreignId('periodo_id') // Relación con periodo
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('materia_id') // Relación con materia
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('personal_id') // Relación con personal
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->foreignId('materia_id')
+            ->constrained()
+            ->onUpdate('cascade');
+
+            $table->foreignId('periodo_id')
+            ->constrained()
+            ->onUpdate('cascade');
+
+            $table->foreignId('carrera_id')
+            ->constrained()
+            ->onUpdate('cascade');
             $table->timestamps(); // Campos created_at y updated_at
         });
     }
