@@ -3,41 +3,28 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+class CreateGruposTable extends Migration
+{
+    public function up()
     {
-        Schema::table('grupos', function (Blueprint $table) {
-            // Eliminar la clave foránea existente
-            $table->dropForeign(['materia_id']);
-            $table->dropColumn('materia_id');
-
-            // Crear la nueva relación con `materia_abiertas`
-            $table->foreignId('materia_abierta_id')
-                ->after('periodo_id') // Ajusta la posición según tu preferencia
-                ->constrained('materia_abiertas')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+        Schema::create('grupos', function (Blueprint $table) {
+            $table->id(); // ID autoincremental
+            $table->string('grupo', 50); // Identificador único del grupo
+            $table->string('descripcion', 255)->nullable(); // Descripción opcional
+            $table->date('fecha'); // Fecha
+            $table->integer('max_alumnos'); // Máximo de alumnos
+            $table->foreignId('personal_id')->constrained()->conDelete('cascade'); // Relación con 'personals'
+            $table->foreignId('materia_abierta_id')->constrained()->onDelete('cascade'); // Relación con 'materias'
+            $table->foreignId('periodo_id')->constrained()->onDelete('cascade'); // Relación con 'periodos'
+            $table->timestamps(); // Timestamps para 'created_at' y 'updated_at'
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::table('grupos', function (Blueprint $table) {
-            // Revertir el cambio
-
-            // Restaurar la relación original con `materias`
-            $table->foreignId('materia_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-        });
+        Schema::dropIfExists('grupos');
     }
-};
+}
+
 
 

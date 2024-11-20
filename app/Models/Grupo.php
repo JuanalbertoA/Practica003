@@ -12,6 +12,7 @@ class Grupo extends Model
 
     protected $fillable = [
         'grupo',
+        'fecha',
         'descripcion',
         'max_alumnos',
         'periodo_id',

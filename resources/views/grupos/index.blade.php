@@ -122,6 +122,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="fecha">Fecha:</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" 
+                                           value="{{ old('fecha', $grupoExistente->fecha ?? '') }}" required>
+                                </div>
+                            </div>
+                            
 
                             <div class="row mt-3">
                                 @if($materiasAbiertas->isNotEmpty())
