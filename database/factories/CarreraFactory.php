@@ -31,7 +31,7 @@ class CarreraFactory extends Factory
         $indice++;
 
         return [
-            'idcarrera' => fake()->unique()->bothify("????####"),  // ID único para cada carrera
+            'idcarrera' => fake()->unique()->numberBetween(1000, 9999),
             'nombrecarrera' => $carrera[0],                        // Nombre completo de la carrera
             'nombremediano' => $carrera[1],                        // Nombre mediano coherente
             'nombrecorto' => $carrera[2],                          // Abreviatura de la carrera

@@ -13,7 +13,7 @@ class ReticulaController extends Controller
     public function __construct()
     {
         $this->val = [
-            'idreticula' => ['required', 'string', 'max:15', 'unique:reticulas,idreticula'],
+            'idreticula' => ['required', 'string', 'max:15'],
             'descripcion' => ['required', 'string', 'max:200'],
             'fechaenvigor' => ['required', 'date'],
 'carrera_id' => ['required', 'exists:carreras,id'], // Cambia 'carrera_id' por 'id'

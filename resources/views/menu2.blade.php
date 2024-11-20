@@ -26,6 +26,8 @@
                         <li><a class="dropdown-item" href="{{route('edificios.index')}}">Edificios</a></li>
                         <li><a class="dropdown-item" href="{{route('horas.index')}}">Horas</a></li>
                         <li><a class="dropdown-item" href="{{route('lugares.index')}}">Lugares</a></li>
+                        <li><a class="dropdown-item" href="{{route('materiasa.index')}}">Materias Abiertas</a></li>
+                        <li><a class="dropdown-item" href="{{route('grupos.index')}}">Grupos</a></li>
                     </ul>
                 </li>
 

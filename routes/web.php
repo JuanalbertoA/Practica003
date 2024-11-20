@@ -7,6 +7,8 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\EdificiosController;
+use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\GrupoHorarioController;
 use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\HorasController;
 use App\Http\Controllers\MateriaAbiertaController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PersonalplazasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReticulaController;
+use App\Models\Grupo;
 
 Route::get('/', function () {
     return view('inicio');
@@ -98,6 +101,7 @@ Route::post('/periodos/update/{periodo}', [PeriodoController::class, 'update'])-
 Route::post('/periodos/store', [PeriodoController::class, 'store'])->name('periodos.store');
 
 Route::get('/materiasa.index', [MateriaAbiertaController::class, 'index'])->name('materiasa.index');
+Route::post('/materiasa/store', [MateriaAbiertaController::class, 'store'])->name('materiasa.store');
 
 Route::get('/edificios', [EdificiosController::class, 'index'])->name('edificios.index');
 Route::get('/edificios/create', [EdificiosController::class, 'create'])->name('edificios.create');
@@ -138,6 +142,10 @@ Route::get('personalplazas/show/{personalplaza}', [PersonalPlazasController::cla
 Route::delete('/personalplazas/destroy/{id}', [PersonalplazasController::class, 'destroy'])->name('personalplazas.destroy');
 Route::put('/personalplazas/update/{id}', [PersonalplazasController::class, 'update'])->name('personalplazas.update');
 Route::post('/personalplazas/store', [PersonalplazasController::class, 'store'])->name('personalplazas.store');
+
+Route::get('/grupos', [GrupoController::class, 'index'])->name('grupos.index');
+Route::post('/grupos/store', [GrupoController::class, 'store'])->name('grupos.store');
+
 
 
 Route::middleware('auth')->group(function () {

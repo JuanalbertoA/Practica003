@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Materia;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Reticula;
 use Illuminate\Database\Seeder;
 
 class MateriaSeeder extends Seeder
@@ -13,6 +13,6 @@ class MateriaSeeder extends Seeder
      */
     public function run(): void
     {
-        Materia::factory(10)->create();
+        Materia::factory(45)->create();
     }
 }
