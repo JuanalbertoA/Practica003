@@ -30,8 +30,6 @@ return new class extends Migration {
     {
         Schema::table('grupos', function (Blueprint $table) {
             // Revertir el cambio
-            $table->dropForeign(['materia_abierta_id']);
-            $table->dropColumn('materia_abierta_id');
 
             // Restaurar la relación original con `materias`
             $table->foreignId('materia_id')
