@@ -6,9 +6,12 @@ use App\Http\Controllers\PlazaController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\DocumentacionController;
 use App\Http\Controllers\EdificiosController;
+use App\Http\Controllers\Grupo21318Controller;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\GrupoHorarioController;
+use App\Http\Controllers\GrupoHorarios21318Controller;
 use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\HorasController;
 use App\Http\Controllers\MateriaAbiertaController;
@@ -18,7 +21,9 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PersonalplazasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReticulaController;
+use App\Http\Controllers\TipoinscController;
 use App\Models\Grupo;
+use App\Models\GrupoHorario;
 
 Route::get('/', function () {
     return view('inicio');
@@ -143,8 +148,44 @@ Route::delete('/personalplazas/destroy/{id}', [PersonalplazasController::class, 
 Route::put('/personalplazas/update/{id}', [PersonalplazasController::class, 'update'])->name('personalplazas.update');
 Route::post('/personalplazas/store', [PersonalplazasController::class, 'store'])->name('personalplazas.store');
 
+Route::get('/tipoinscs', [TipoinscController::class, 'index'])->name('tipoinscs.index');
+Route::get('/tipoinscs/create', [TipoinscController::class, 'create'])->name('tipoinscs.create');
+Route::get('/tipoinscs/edit/{tipoinsc}', [TipoinscController::class, 'edit'])->name('tipoinscs.edit');
+Route::get('/tipoinscs/show/{tipoinsc}', [TipoinscController::class, 'show'])->name('tipoinscs.show');
+Route::delete('/tipoinscs/destroy/{tipoinsc}', [TipoinscController::class, 'destroy'])->name('tipoinscs.destroy');
+Route::put('/tipoinscs/update/{tipoinsc}', [TipoinscController::class, 'update'])->name('tipoinscs.update');
+Route::post('/tipoinscs/store', [TipoinscController::class, 'store'])->name('tipoinscs.store');
+
+Route::get('/documentacions', [DocumentacionController::class, 'index'])->name('documentacions.index');
+Route::get('/documentacions/create', [DocumentacionController::class, 'create'])->name('documentacions.create');
+Route::get('/documentacions/edit/{documentacion}', [DocumentacionController::class, 'edit'])->name('documentacions.edit');
+Route::get('/documentacions/show/{documentacion}', [DocumentacionController::class, 'show'])->name('documentacions.show');
+Route::delete('/documentacions/destroy/{documentacion}', [DocumentacionController::class, 'destroy'])->name('documentacions.destroy');
+Route::put('/documentacions/update/{documentacion}', [DocumentacionController::class, 'update'])->name('documentacions.update');
+Route::post('/documentacions/store', [DocumentacionController::class, 'store'])->name('documentacions.store');
+
+Route::get('/grupos21318', [Grupo21318Controller::class, 'index'])->name('grupos21318.index');
+Route::get('/grupos21318/create', [Grupo21318Controller::class, 'create'])->name('grupos21318.create');
+Route::get('/grupos21318/edit/{grupo}', [Grupo21318Controller::class, 'edit'])->name('grupos21318.edit');
+Route::get('/grupos21318/show/{grupo}', [Grupo21318Controller::class, 'show'])->name('grupos21318.show');
+Route::delete('/grupos21318/destroy/{grupo}', [Grupo21318Controller::class, 'destroy'])->name('grupos21318.destroy');
+Route::put('/grupos21318/update/{grupo}', [Grupo21318Controller::class, 'update'])->name('grupos21318.update');
+Route::post('/grupos21318/store', [Grupo21318Controller::class, 'store'])->name('grupos21318.store');
+
+// Rutas para GrupoHorarios21318
+Route::get('/grupohorarios21318', [GrupoHorarios21318Controller::class, 'index'])->name('grupohorarios21318.index');
+Route::get('/grupohorarios21318/create', [GrupoHorarios21318Controller::class, 'create'])->name('grupohorarios21318.create');
+Route::get('/grupohorarios21318/edit/{id}', [GrupoHorarios21318Controller::class, 'edit'])->name('grupohorarios21318.edit');
+Route::delete('/grupohorarios21318/destroy/{id}', [GrupoHorarios21318Controller::class, 'destroy'])->name('grupohorarios21318.destroy');
+Route::put('/grupohorarios21318/update/{id}', [GrupoHorarios21318Controller::class, 'update'])->name('grupohorarios21318.update');
+Route::post('/grupohorarios21318/store', [GrupoHorarios21318Controller::class, 'store'])->name('grupohorarios21318.store');
+
+
 Route::get('/grupos', [GrupoController::class, 'index'])->name('grupos.index');
 Route::post('/grupos/store', [GrupoController::class, 'store'])->name('grupos.store');
+Route::post('/grupo_horarios/store', [GrupoHorarioController::class, 'store'])->name('grupo_horario.store');
+Route::get('/grupo_horarios/create', [GrupoHorarioController::class, 'create'])->name('grupo_horarios.create');
+
 
 
 

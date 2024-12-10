@@ -129,21 +129,20 @@
                                            value="{{ old('fecha', $grupoExistente->fecha ?? '') }}" required>
                                 </div>
                             </div>
-                            
 
                             <div class="row mt-3">
                                 @if($materiasAbiertas->isNotEmpty())
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Materias Disponibles:</label>
+                                            <label>Materia:</label>
                                             <div class="border p-3" style="max-height: 200px; overflow-y: auto;">
                                                 @foreach($materiasAbiertas as $materia)
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" 
-                                                               name="materias[]" 
+                                                        <input class="form-check-input" type="radio" 
+                                                               name="materia" 
                                                                value="{{ $materia->materia_id }}"
                                                                id="materia_{{ $materia->id }}"
-                                                               {{ (is_array(old('materias')) && in_array($materia->materia_id, old('materias'))) ? 'checked' : '' }}>
+                                                               {{ old('materia') == $materia->materia_id ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="materia_{{ $materia->id }}">
                                                             {{ $materia->materia->nombremateria }}
                                                         </label>
@@ -157,15 +156,15 @@
                                 @if($personalFiltrado->isNotEmpty())
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Personal Disponible:</label>
+                                            <label>Docente:</label>
                                             <div class="border p-3" style="max-height: 200px; overflow-y: auto;">
                                                 @foreach($personalFiltrado as $persona)
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" 
-                                                               name="personal[]" 
+                                                        <input class="form-check-input" type="radio" 
+                                                               name="personal" 
                                                                value="{{ $persona->id }}"
                                                                id="personal_{{ $persona->id }}"
-                                                               {{ (is_array(old('personal')) && in_array($persona->id, old('personal'))) ? 'checked' : '' }}>
+                                                               {{ old('personal') == $persona->id ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="personal_{{ $persona->id }}">
                                                             {{ $persona->nombres }} {{ $persona->apellidop }}
                                                         </label>

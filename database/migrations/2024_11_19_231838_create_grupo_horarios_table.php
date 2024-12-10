@@ -21,8 +21,8 @@ return new class extends Migration
                   ->constrained('lugares')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
-            $table->tinyInteger('dia'); // Día de la semana (TINYINT)
-            $table->time('hora'); // Hora (TIME)
+            $table->string('dia'); // Día de la semana (TINYINT)
+            $table->string('hora'); // Hora (TIME)
             $table->timestamps(); // Campos created_at y updated_at
         });
     }

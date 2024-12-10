@@ -76,18 +76,14 @@ class GrupoController extends Controller
             'grupo' => 'required|string|max:5',
             'descripcion' => 'nullable|string|max:200',
             'max_alumnos' => 'required|integer|min:1',
-            'fecha' => 'required|date', // Validación de fecha
+            'fecha' => 'required|date',
             'periodo' => 'required|exists:periodos,id',
-            'carrera' => 'required|exists:carreras,id',
-            'semestre' => 'required|integer|min:1|max:9',
-            'materias' => 'required|array|min:1',
-            'materias.*' => 'exists:materias,id',
-            'personal' => 'nullable|array',
-            'personal.*' => 'exists:personals,id',
+            'materia' => 'required|exists:materias,id',
+            'personal' => 'nullable|exists:personals,id',
         ]);
 
         try {
-            $materiaAbierta = MateriaAbierta::where('materia_id', $request->materias[0])
+            $materiaAbierta = MateriaAbierta::where('materia_id', $request->materia)
                 ->where('periodo_id', $request->periodo)
                 ->firstOrFail();
 
@@ -96,10 +92,10 @@ class GrupoController extends Controller
                 [
                     'descripcion' => $request->descripcion,
                     'max_alumnos' => $request->max_alumnos,
-                    'fecha' => $request->fecha, // Guardar la fecha
+                    'fecha' => $request->fecha,
                     'periodo_id' => $request->periodo,
                     'materia_abierta_id' => $materiaAbierta->id,
-                    'personal_id' => $request->personal[0] ?? null,
+                    'personal_id' => $request->personal ?: null,
                 ]
             );
 

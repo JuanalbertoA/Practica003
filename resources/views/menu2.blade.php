@@ -28,6 +28,10 @@
                         <li><a class="dropdown-item" href="{{route('lugares.index')}}">Lugares</a></li>
                         <li><a class="dropdown-item" href="{{route('materiasa.index')}}">Materias Abiertas</a></li>
                         <li><a class="dropdown-item" href="{{route('grupos.index')}}">Grupos</a></li>
+                        <li><a class="dropdown-item" href="{{route('tipoinscs.index')}}">Tipo Inscripcion A</a></li>
+                        <li><a class="dropdown-item" href="{{route('documentacions.index')}}">Documentacion A</a></li>
+                        <li><a class="dropdown-item" href="{{route('grupos21318.index')}}">Grupos318</a></li>
+                        <li><a class="dropdown-item" href="{{route('grupohorarios21318.index')}}">GrupoH318</a></li>
                     </ul>
                 </li>
 
