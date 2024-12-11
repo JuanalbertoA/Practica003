@@ -116,11 +116,15 @@ public function insertarGrupoHorario(Request $request)
     Log::info('Datos recibidos en la solicitud:', $request->all());
 
     $validated = $request->validate([
-        '*.grupo_id' => 'required|exists:grupos,id',
-        '*.lugar_id' => 'required|exists:lugares,id',
-        '*.dia' => 'required|string|max:15',
-        '*.hora' => 'required|string|max:10',
+        'grupo' => 'required|string|max:5|unique:grupos',
+        'descripcion' => 'required|string|max:200',
+        'max_alumnos' => 'required|integer|min:1',
+        'fecha' => 'required|date',
+        'periodo_id' => 'required|exists:periodos,id',
+        'materia_abierta_id' => 'required|exists:materia_abiertas,id',
+        'personal_id' => 'nullable|exists:personals,id', // Permitir valores nulos
     ]);
+    
 
     try {
         foreach ($validated as $horario) {
@@ -178,6 +182,69 @@ public function eliminarGrupoHorario(Request $request)
         return response()->json(['error' => 'Error al eliminar el horario: ' . $e->getMessage()], 500);
     }
 }
+
+public function verificarGrupo(Request $request)
+{
+    $grupo = $request->query('grupo'); // Obtenemos el nombre del grupo desde la consulta
+
+    if (!$grupo) {
+        return response()->json(['error' => 'El parámetro grupo es obligatorio.'], 400);
+    }
+
+    $existe = Grupo::where('grupo', $grupo)->exists();
+
+    return response()->json(['existe' => $existe]);
+}
+
+public function obtenerGrupo(Request $request)
+{
+    $grupoNombre = $request->query('grupo');
+
+    if (!$grupoNombre) {
+        return response()->json(['error' => 'El parámetro grupo es obligatorio.'], 400);
+    }
+
+    $grupo = Grupo::where('grupo', $grupoNombre)->first();
+
+    if (!$grupo) {
+        return response()->json(['error' => 'Grupo no encontrado.'], 404);
+    }
+
+    return response()->json($grupo, 200);
+}
+
+public function actualizarGrupo(Request $request, $grupo)
+{
+    try {
+        // Valida los datos recibidos
+        $validatedData = $request->validate([
+            'descripcion' => 'required|string|max:200',
+            'max_alumnos' => 'required|integer|min:1',
+            'fecha' => 'required|date',
+            'periodo_id' => 'required|exists:periodos,id',
+            'materia_abierta_id' => 'required|exists:materia_abiertas,id',
+            'personal_id' => 'nullable|exists:personals,id',
+        ]);
+
+        // Busca el grupo por su nombre
+        $grupoExistente = Grupo::where('grupo', $grupo)->firstOrFail();
+
+        // Actualiza el grupo
+        $grupoExistente->update($validatedData);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Grupo actualizado correctamente',
+            'grupo' => $grupoExistente,
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+        ], 500);
+    }
+}
+
 
 
 
