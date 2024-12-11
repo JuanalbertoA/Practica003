@@ -113,25 +113,25 @@ class JsonController extends Controller
     
 public function insertarGrupoHorario(Request $request)
 {
-    Log::info('Datos recibidos en la solicitud:', $request->all());
+    Log::info('Datos recibidos para insertar:', $request->all());
 
     $validated = $request->validate([
-        '*.grupo_id' => 'required|exists:grupos,id',
-        '*.lugar_id' => 'required|exists:lugares,id',
-        '*.dia' => 'required|string|max:15',
-        '*.hora' => 'required|string|max:10',
+        'grupo_id' => 'required|exists:grupos,id',
+        'lugar_id' => 'required|exists:lugares,id',
+        'dia' => 'required|string|max:15',
+        'hora' => 'required|string|max:10',
     ]);
 
     try {
-        foreach ($validated as $horario) {
-            GrupoHorario::create($horario);
-        }
+        GrupoHorario::create($validated);
 
-        return response()->json(['message' => 'Horarios insertados correctamente.'], 201);
+        return response()->json(['message' => 'Horario insertado correctamente.'], 201);
     } catch (\Exception $e) {
-        return response()->json(['message' => 'Error al insertar los horarios.', 'error' => $e->getMessage()], 500);
+        Log::error('Error al insertar horario:', ['error' => $e->getMessage()]);
+        return response()->json(['message' => 'Error al insertar horario.'], 500);
     }
 }
+
 
 
 public function horarios(Request $request)
@@ -147,12 +147,13 @@ public function horarios(Request $request)
         ->map(function ($horario) {
             return [
                 'dia' => $horario->dia,
-                'hora' => substr($horario->hora, 0, 5), // Devuelve hora en formato HH:mm
+                'hora' => substr($horario->hora, 0, 5), // Formato HH:mm
             ];
         });
 
     return response()->json($horarios);
 }
+
 
 
 public function eliminarGrupoHorario(Request $request)
