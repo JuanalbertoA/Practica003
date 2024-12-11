@@ -143,7 +143,13 @@ public function horarios(Request $request)
 
     $horarios = GrupoHorario::where('grupo_id', $validated['grupo_id'])
         ->where('lugar_id', $validated['lugar_id'])
-        ->get(['dia', 'hora']); // Solo selecciona los campos necesarios
+        ->get()
+        ->map(function ($horario) {
+            return [
+                'dia' => $horario->dia,
+                'hora' => substr($horario->hora, 0, 5), // Devuelve hora en formato HH:mm
+            ];
+        });
 
     return response()->json($horarios);
 }
