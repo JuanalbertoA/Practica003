@@ -15,7 +15,7 @@ class CreateGruposTable extends Migration
             $table->integer('max_alumnos'); // Máximo de alumnos
             $table->foreignId('personal_id')->constrained()->conDelete('cascade'); // Relación con 'personals'
             $table->foreignId('materia_abierta_id')->constrained()->onDelete('cascade'); // Relación con 'materias'
-            $table->foreignId('periodo_id')->constrained()->onDelete('cascade'); // Relación con 'periodos'
+            $table->foreignId('periodo_id')->constrained()->onDelete('cascade')->nullable(); // Relación con 'periodos'
             $table->timestamps(); // Timestamps para 'created_at' y 'updated_at'
         });
     }

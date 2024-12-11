@@ -21,7 +21,7 @@ class JsonController extends Controller
     {
         $periodos = MateriaAbierta::with(['periodo:id,periodo'])
         ->get(['id', 'materia_id', 'periodo_id', 'carrera_id'])
-        ->unique('periodos.periodo');
+        ->unique('periodo.periodo');
         return $periodos;
     }
 
