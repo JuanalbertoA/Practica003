@@ -19,7 +19,6 @@ Route::get('/lugar', [JsonController::class, 'lugar']);
 
 Route::post('/grupos', [JsonController::class, 'insertarGrupo']);
 Route::post('/insertar-grupo-horario', [JsonController::class, 'insertarGrupoHorario']);
-
 Route::post('/obtener-horarios', [JsonController::class, 'obtenerHorariosPorGrupoYLugar']);
 Route::post('/actualizar-horarios', [JsonController::class, 'actualizarHorarios']);
 

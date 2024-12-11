@@ -116,15 +116,11 @@ public function insertarGrupoHorario(Request $request)
     Log::info('Datos recibidos en la solicitud:', $request->all());
 
     $validated = $request->validate([
-        'grupo' => 'required|string|max:5|unique:grupos',
-        'descripcion' => 'required|string|max:200',
-        'max_alumnos' => 'required|integer|min:1',
-        'fecha' => 'required|date',
-        'periodo_id' => 'required|exists:periodos,id',
-        'materia_abierta_id' => 'required|exists:materia_abiertas,id',
-        'personal_id' => 'nullable|exists:personals,id', // Permitir valores nulos
+        '*.grupo_id' => 'required|exists:grupos,id',
+        '*.lugar_id' => 'required|exists:lugares,id',
+        '*.dia' => 'required|string|max:15',
+        '*.hora' => 'required|string|max:10',
     ]);
-    
 
     try {
         foreach ($validated as $horario) {
@@ -137,6 +133,7 @@ public function insertarGrupoHorario(Request $request)
     }
 }
 
+
 public function horarios(Request $request)
 {
     $validated = $request->validate([
@@ -146,16 +143,11 @@ public function horarios(Request $request)
 
     $horarios = GrupoHorario::where('grupo_id', $validated['grupo_id'])
         ->where('lugar_id', $validated['lugar_id'])
-        ->get()
-        ->map(function ($horario) {
-            return [
-                'dia' => $horario->dia,
-                'hora' => substr($horario->hora, 0, 5), // Devuelve hora en formato HH:mm
-            ];
-        });
+        ->get(['dia', 'hora']); // Solo selecciona los campos necesarios
 
     return response()->json($horarios);
 }
+
 
 public function eliminarGrupoHorario(Request $request)
 {
@@ -244,11 +236,5 @@ public function actualizarGrupo(Request $request, $grupo)
         ], 500);
     }
 }
-
-
-
-
-
-
 
     }
